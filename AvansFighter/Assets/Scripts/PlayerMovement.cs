@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 8f;
     public float jumpingPower = 8f;
     private bool isFacingRight = true;
-
+    public Animator animator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] LayerMask groundLayer;
@@ -19,9 +19,12 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
 
+        animator.SetFloat("Speed", Mathf.Abs(horizontal));
+
         if(Input.GetButtonDown("Jump") && IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            animator.SetBool("IsJumping", true);
         }
 
        /* if(Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -29,7 +32,12 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }*/
 
-        Flip();
+       /* Flip();*/
+    }
+
+    public void OnLanding()
+    {
+        animator.SetBool("IsJumping", false);
     }
 
     private void FixedUpdate()
