@@ -35,9 +35,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         //Check for keyboard input
-        if (Input.GetKeyUp("h"))
+
+        if (Input.GetKey("h") && !_isPlaying_walk)
         {
             changeState(STATE_HADOOKEN);
+            
         }
         else if (Input.GetKey("w") && !_isPlaying_hadooken && !_isPlaying_crouch)
         {
