@@ -1,174 +1,118 @@
 using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
     public float walkSpeed = 1; // player left right walk speed
-    private bool _isGrounded = true; // is player on the ground?
+    private bool isGrounded = true; // is player on the ground?
 
-    Animator animator;
+    private Animator animator;
 
-    //some flags to check when certain animations are playing
-    bool _isPlaying_crouch = false;
-    bool _isPlaying_walk = false;
-    bool _isPlaying_hadooken = false;
+    private const int STATE_IDLE = 0;
+    private const int STATE_WALK = 1;
+    private const int STATE_CROUCH = 2;
+    private const int STATE_JUMP = 3;
+    private const int STATE_HADOOKEN = 4;
+    private const int STATE_PUNCH = 5;
 
-    //animation states - the values in the animator conditions
-    const int STATE_IDLE = 0;
-    const int STATE_WALK = 1;
-    const int STATE_CROUCH = 2;
-    const int STATE_JUMP = 3;
-    const int STATE_HADOOKEN = 4;
+    private bool isPlayingCrouch = false;
+    private bool isPlayingWalk = false;
+    private bool isPlayingHadooken = false;
 
-    string _currentDirection = "left";
-    int _currentAnimationState = STATE_IDLE;
+    private string currentDirection = "left";
+    private int currentAnimationState = STATE_IDLE;
 
-    // Use this for initialization
-    void Start()
+    private void Start()
     {
-        //define the animator attached to the player
-        animator = this.GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
-    // FixedUpdate is used insead of Update to better handle the physics based jump
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        //Check for keyboard input
-
-        if (Input.GetKey("h") && !_isPlaying_walk)
+        if (Input.GetKey("j") && !isPlayingWalk && !isPlayingHadooken && !isPlayingCrouch)
         {
-            changeState(STATE_HADOOKEN);
-            
+            ChangeState(STATE_PUNCH);
         }
-        else if (Input.GetKey("w") && !_isPlaying_hadooken && !_isPlaying_crouch)
+        else if (Input.GetKey("h") && !isPlayingWalk)
         {
-            if (_isGrounded)
+            ChangeState(STATE_HADOOKEN);
+        }
+        else if (Input.GetKey("w") && !isPlayingHadooken && !isPlayingCrouch)
+        {
+            if (isGrounded)
             {
-                _isGrounded = false;
+                isGrounded = false;
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 350));
-                changeState(STATE_JUMP);
+                ChangeState(STATE_JUMP);
             }
         }
-        else if (Input.GetKey("s") && !_isPlaying_walk)
+        else if (Input.GetKey("s") && !isPlayingWalk)
         {
-            changeState(STATE_CROUCH);
+            ChangeState(STATE_CROUCH);
         }
-        else if (Input.GetKey("d") && !_isPlaying_hadooken)
+        else if (Input.GetKey("d") && !isPlayingHadooken)
         {
-            changeDirection("right");
+            ChangeDirection("right");
             transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
 
-            if (_isGrounded)
-                changeState(STATE_WALK);
-
+            if (isGrounded)
+                ChangeState(STATE_WALK);
         }
-        else if (Input.GetKey("a") && !_isPlaying_hadooken)
+        else if (Input.GetKey("a") && !isPlayingHadooken)
         {
-            changeDirection("left");
+            ChangeDirection("left");
             transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
 
-            if (_isGrounded)
-                changeState(STATE_WALK);
-
+            if (isGrounded)
+                ChangeState(STATE_WALK);
         }
         else
         {
-            if (_isGrounded)
-                changeState(STATE_IDLE);
+            if (isGrounded)
+                ChangeState(STATE_IDLE);
         }
 
-        //check if crouch animation is playing
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Crouch"))
-            _isPlaying_crouch = true;
-        else
-            _isPlaying_crouch = false;
+        // Check if crouch animation is playing
+        isPlayingCrouch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Crouch");
 
-        //check if hadooken animation is playing
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Hadooken"))
-            _isPlaying_hadooken = true;
-        else
-            _isPlaying_hadooken = false;
+        // Check if hadooken animation is playing
+        isPlayingHadooken = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Hadooken");
 
-        //check if strafe animation is playing
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk"))
-            _isPlaying_walk = true;
-        else
-            _isPlaying_walk = false;
-
+        // Check if walk animation is playing
+        isPlayingWalk = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk");
     }
 
-    //--------------------------------------
-    // Change the players animation state
-    //--------------------------------------
-    void changeState(int state)
+    private void ChangeState(int state)
     {
-
-        if (_currentAnimationState == state)
+        if (currentAnimationState == state)
             return;
 
-        switch (state)
-        {
-
-            case STATE_WALK:
-                animator.SetInteger("state", STATE_WALK);
-                break;
-
-            case STATE_CROUCH:
-                animator.SetInteger("state", STATE_CROUCH);
-                break;
-
-            case STATE_JUMP:
-                animator.SetInteger("state", STATE_JUMP);
-                break;
-
-            case STATE_IDLE:
-                animator.SetInteger("state", STATE_IDLE);
-                break;
-
-            case STATE_HADOOKEN:
-                animator.SetInteger("state", STATE_HADOOKEN);
-                break;
-
-        }
-
-        _currentAnimationState = state;
+        animator.SetInteger("state", state);
+        currentAnimationState = state;
     }
 
-    //--------------------------------------
-    // Check if player has collided with the floor
-    //--------------------------------------
-    void OnCollisionEnter2D(Collision2D coll)
+    private void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.name == "Floor")
         {
-            _isGrounded = true;
-            changeState(STATE_IDLE);
-
+            isGrounded = true;
+            ChangeState(STATE_IDLE);
         }
-
     }
 
-    //--------------------------------------
-    // Flip player sprite for left/right walking
-    //--------------------------------------
-    void changeDirection(string direction)
+    private void ChangeDirection(string direction)
     {
-
-        if (_currentDirection != direction)
+        if (currentDirection != direction)
         {
             if (direction == "right")
             {
-                transform.Rotate(0, 180, 0);
-                _currentDirection = "right";
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                currentDirection = "right";
             }
             else if (direction == "left")
             {
-                transform.Rotate(0, -180, 0);
-                _currentDirection = "left";
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                currentDirection = "left";
             }
         }
-
     }
-
 }
