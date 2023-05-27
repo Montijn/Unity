@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private bool isPlayingWalk = false;
     private bool isPlayingHadooken = false;
 
-    private string currentDirection = "left";
+    private string currentDirection = "right";
     private int currentAnimationState = STATE_IDLE;
 
     private void Start()
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey("j") && !isPlayingWalk && !isPlayingHadooken && !isPlayingCrouch)
+        if (Input.GetKey("j") )
         {
             ChangeState(STATE_PUNCH);
         }
