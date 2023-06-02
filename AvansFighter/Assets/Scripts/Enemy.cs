@@ -9,6 +9,15 @@ public class Enemy : MonoBehaviour
         currentHealth = maxHealth;
     }
 
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("PunchHitBox"))
+        {
+            Debug.Log("Enemy hit by punch!");
+            TakeDamage(10); // Example: Reduce health by 10 when hit by the punch
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;

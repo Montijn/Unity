@@ -390,7 +390,6 @@ GameObject:
   m_Component:
   - component: {fileID: 839988772}
   - component: {fileID: 839988773}
-  - component: {fileID: 839988774}
   m_Layer: 0
   m_Name: PunchHitbox
   m_TagString: PunchHitBox
@@ -426,7 +425,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.5566899, y: -0.10862845}
+  m_Offset: {x: 0.32979223, y: 0.116895564}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -437,20 +436,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9670936, y: 0.8299465}
+  m_Size: {x: 0.5132982, y: 0.3788985}
   m_EdgeRadius: 0
---- !u!114 &839988774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839988771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb58e6138afee754ba6a7dabb8b98f0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1100729746
 GameObject:
   m_ObjectHideFlags: 0
