@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
                 ChangeState(STATE_JUMP);
             }
         }
-        else if (Input.GetKey("s") && !isPlayingWalk)
+        else if (Input.GetKey("s") && !isPlayingWalk && !isPlayingPunch)
         {
             ChangeState(STATE_CROUCH);
         }
