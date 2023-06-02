@@ -2,34 +2,33 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float walkSpeed = 1; // player left right walk speed
-    private bool isGrounded = true; // is player on the ground?
-
+    public float walkSpeed = 1;
+    private bool isGrounded = true;
     private Animator animator;
-
     private const int STATE_IDLE = 0;
     private const int STATE_WALK = 1;
     private const int STATE_CROUCH = 2;
     private const int STATE_JUMP = 3;
     private const int STATE_HADOOKEN = 4;
     private const int STATE_PUNCH = 5;
-
     private bool isPlayingCrouch = false;
     private bool isPlayingWalk = false;
     private bool isPlayingPunch = false;
-
-    private string currentDirection = "right";
     private int currentAnimationState = STATE_IDLE;
+
+    public GameObject enemy; // Reference to the enemy object
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         ChangeState(STATE_IDLE);
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        ChangeDirection(enemy.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey("j") )
+        if (Input.GetKey("j"))
         {
             ChangeState(STATE_PUNCH);
         }
@@ -52,17 +51,29 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKey("d") && !isPlayingPunch)
         {
-            ChangeDirection("right");
-            transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
-
+            ChangeDirection(enemy.transform.position.x - transform.position.x);
+            if (enemy.transform.position.x - transform.position.x > 0)
+            {
+                transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+            }
             if (isGrounded)
                 ChangeState(STATE_WALK);
         }
         else if (Input.GetKey("a") && !isPlayingPunch)
         {
-            ChangeDirection("left");
-            transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
-
+            ChangeDirection(enemy.transform.position.x - transform.position.x);
+            if (enemy.transform.position.x - transform.position.x > 0)
+            {
+                transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
+            }
             if (isGrounded)
                 ChangeState(STATE_WALK);
         }
@@ -72,17 +83,10 @@ public class PlayerController : MonoBehaviour
                 ChangeState(STATE_IDLE);
         }
 
-        // Check if crouch animation is playing
         isPlayingCrouch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Crouch");
-
-        // Check if hadooken animation is playing
         isPlayingPunch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Punch");
-
-        // Check if walk animation is playing
         isPlayingWalk = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk");
     }
-
-
 
     private void ChangeState(int state)
     {
@@ -102,20 +106,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ChangeDirection(string direction)
+    private void ChangeDirection(float direction)
     {
-        if (currentDirection != direction)
+        if (direction > 0)
         {
-            if (direction == "right")
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-                currentDirection = "right";
-            }
-            else if (direction == "left")
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                currentDirection = "left";
-            }
+            // Enemy is to the right of the player
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            // Enemy is to the left of the player
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 }
