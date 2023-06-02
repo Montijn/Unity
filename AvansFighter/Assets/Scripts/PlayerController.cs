@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        ChangeState(STATE_IDLE);
     }
 
     private void FixedUpdate()
