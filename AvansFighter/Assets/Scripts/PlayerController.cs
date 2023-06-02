@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isPlayingCrouch = false;
     private bool isPlayingWalk = false;
-    private bool isPlayingHadooken = false;
+    private bool isPlayingPunch = false;
 
     private string currentDirection = "right";
     private int currentAnimationState = STATE_IDLE;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         {
             ChangeState(STATE_HADOOKEN);
         }
-        else if (Input.GetKey("w") && !isPlayingHadooken && !isPlayingCrouch)
+        else if (Input.GetKey("w") && !isPlayingPunch && !isPlayingCrouch)
         {
             if (isGrounded)
             {
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         {
             ChangeState(STATE_CROUCH);
         }
-        else if (Input.GetKey("d") && !isPlayingHadooken)
+        else if (Input.GetKey("d") && !isPlayingPunch)
         {
             ChangeDirection("right");
             transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
                 ChangeState(STATE_WALK);
         }
-        else if (Input.GetKey("a") && !isPlayingHadooken)
+        else if (Input.GetKey("a") && !isPlayingPunch)
         {
             ChangeDirection("left");
             transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
@@ -76,11 +76,13 @@ public class PlayerController : MonoBehaviour
         isPlayingCrouch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Crouch");
 
         // Check if hadooken animation is playing
-        isPlayingHadooken = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Hadooken");
+        isPlayingPunch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Punch");
 
         // Check if walk animation is playing
         isPlayingWalk = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk");
     }
+
+
 
     private void ChangeState(int state)
     {
