@@ -33,6 +33,6 @@ public class Enemy : MonoBehaviour
     {
         // Add your desired logic for enemy death
         Debug.Log("Enemy died!");
-        Destroy(gameObject);
+
     }
 }
