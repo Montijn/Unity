@@ -14,7 +14,17 @@ public class Enemy : MonoBehaviour
         if (collider.CompareTag("PunchHitBox"))
         {
             Debug.Log("Enemy hit by punch!");
-            TakeDamage(10); // Example: Reduce health by 10 when hit by the punch
+            TakeDamage(10);
+        }
+        else if (collider.CompareTag("CrouchPunchHitbox"))
+        {
+            Debug.Log("Enemy hit by crouch punch!");
+            TakeDamage(10);
+        }
+        else if (collider.CompareTag("JumpKickHitbox"))
+        {
+            Debug.Log("Enemy hit by jump kick!");
+            TakeDamage(30);
         }
     }
 

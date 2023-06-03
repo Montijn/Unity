@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0782bafa2610c804f8480ef40638f845
+guid: c4257f5113e08c44d9c15d52ffd2558b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -45,9 +45,9 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
-  spritePixelsToUnits: 48
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,223 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_0
+      name: Ken-Jump-Kick_0
       rect:
         serializedVersion: 2
-        x: 124
-        y: 577
-        width: 53
-        height: 101
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b25316efa5924ab4ebe9c289fd318679
-      internalID: 2051826268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_1
-      rect:
-        serializedVersion: 2
-        x: 110
-        y: 477
+        x: 0
+        y: 191
         width: 69
-        height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8e16ffb5ecb4b54faa0da231a37c661
-      internalID: -713470868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_2
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 580
-        width: 55
-        height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4c8242fab729be4ca7eeb3a52124f13
-      internalID: 1633839551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_3
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 573
-        width: 61
-        height: 105
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6984998aca94e54419f8d81cf8565088
-      internalID: -182515888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_4
-      rect:
-        serializedVersion: 2
-        x: 109
-        y: 485
-        width: 66
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10a03a572e2189149850976cc5c5a1dd
-      internalID: -1196785666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_5
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 372
-        width: 80
-        height: 91
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbe904310f237d04c86909b031be22ae
-      internalID: 1984493011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_6
-      rect:
-        serializedVersion: 2
-        x: 118
-        y: 250
-        width: 67
-        height: 105
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4fbe846b836cc440a51888a23b5c869
-      internalID: -667550944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_7
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 164
-        width: 57
-        height: 56
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6f5dab189ef9694b892973c3e5d62ac
-      internalID: -798639494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_8
-      rect:
-        serializedVersion: 2
-        x: 118
-        y: 31
-        width: 53
-        height: 106
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9dd1af9b1c2aa34091896e4b896080d
-      internalID: -1301490594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_9
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 581
-        width: 61
-        height: 103
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: faf794eff02ece14591161b35d40e894
-      internalID: 2064548736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_10
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 475
-        width: 73
-        height: 94
+        height: 108
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,20 +131,104 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 416f35811750cb24da946bfb3df136da
-      internalID: -246401281
+      spriteID: fc8a249fee539a9449d686e78da35b7a
+      internalID: -1230065631
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_11
+      name: Ken-Jump-Kick_1
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 224
+        width: 61
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32e206396eeb4cb4f952810930b65749
+      internalID: -216018807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_2
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 246
+        width: 49
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af93462542305984eb6eecd16edb133d
+      internalID: 718279494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_3
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 241
+        width: 58
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 300a353f1fafbc04bb7d483f844822ca
+      internalID: 1322666857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_4
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 220
+        width: 95
+        height: 98
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bac9e500400f4594191327a35f2e0b7c
+      internalID: -973403949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_5
       rect:
         serializedVersion: 2
         x: 408
-        y: 170
-        width: 66
-        height: 88
+        y: 223
+        width: 56
+        height: 95
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -362,20 +236,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd519ee233f3ca342a6393f9f9a26a44
-      internalID: 1357900569
+      spriteID: 561d7de921d1f364b8871a28f0724dc2
+      internalID: 904179555
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_12
+      name: Ken-Jump-Kick_6
       rect:
         serializedVersion: 2
-        x: 475
-        y: 37
-        width: 72
-        height: 80
+        x: 478
+        y: 226
+        width: 95
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,8 +257,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a09a3b0f10fe5e458920b62ee4aafc1
-      internalID: -819851671
+      spriteID: df7480cae66cbd849bc53dbe400c8da9
+      internalID: 530635086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_7
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 225
+        width: 58
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c063060b10e940b4b9d04ec6ad541302
+      internalID: 238270368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_8
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 218
+        width: 54
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd1bab995d6f95a4e9877e8b26f7b74f
+      internalID: -1432811363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_9
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 217
+        width: 53
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 569afbe4cee0e074b99fbe0c7dad63c4
+      internalID: -301140835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_10
+      rect:
+        serializedVersion: 2
+        x: 812
+        y: 213
+        width: 54
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c180a585922bfd24dab1b8a8a0077131
+      internalID: 592200118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ken-Jump-Kick_11
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 186
+        width: 55
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e70cbc843c324be4786964a83ba67aee
+      internalID: 1762556317
       vertices: []
       indices: 
       edges: []
@@ -393,26 +372,25 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_10: -246401281
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_8: -667550944
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_4: 1633839551
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_9: -798639494
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_12: -819851671
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_5: -182515888
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_3: -713470868
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_1: 1214060220
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_0: 2051826268
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_2: 346450324
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_6: -1196785666
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_7: 1984493011
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_11: 1357900569
+      Ken-Jump-Kick_3: 1322666857
+      Ken-Jump-Kick_2: 718279494
+      Ken-Jump-Kick_9: -301140835
+      Ken-Jump-Kick_0: -1230065631
+      Ken-Jump-Kick_7: 238270368
+      Ken-Jump-Kick_11: 1762556317
+      Ken-Jump-Kick_5: 904179555
+      Ken-Jump-Kick_10: 592200118
+      Ken-Jump-Kick_4: -973403949
+      Ken-Jump-Kick_1: -216018807
+      Ken-Jump-Kick_6: 530635086
+      Ken-Jump-Kick_8: -1432811363
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

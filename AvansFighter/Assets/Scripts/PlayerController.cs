@@ -9,14 +9,16 @@ public class PlayerController : MonoBehaviour
     private const int STATE_WALK = 1;
     private const int STATE_CROUCH = 2;
     private const int STATE_JUMP = 3;
-    private const int STATE_HADOOKEN = 4;
+    private const int STATE_CROUCH_PUNCH = 4;
     private const int STATE_PUNCH = 5;
+    private const int STATE_JUMP_KICK = 6;
+    
     private bool isPlayingCrouch = false;
     private bool isPlayingWalk = false;
     private bool isPlayingPunch = false;
     private int currentAnimationState = STATE_IDLE;
-
-    public GameObject enemy; // Reference to the enemy object
+    private bool isCrouching = false;
+    public GameObject enemy;
 
     private void Start()
     {
@@ -28,24 +30,34 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetKey("j"))
+        isCrouching = Input.GetKey("s");
+        if (isCrouching && Input.GetKey("j"))
         {
-            ChangeState(STATE_PUNCH);
+            ChangeState(STATE_CROUCH_PUNCH);
         }
-        else if (Input.GetKey("h") && !isPlayingWalk)
+        else if (Input.GetKey("k")) {
+            if (isGrounded)
+            {
+                isGrounded = false;
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 340));
+                ChangeState(STATE_JUMP_KICK);
+            }
+           
+        }
+        else if (Input.GetKey("j"))
         {
-            ChangeState(STATE_HADOOKEN);
+                ChangeState(STATE_PUNCH);
         }
         else if (Input.GetKey("w") && !isPlayingPunch && !isPlayingCrouch)
         {
             if (isGrounded)
             {
                 isGrounded = false;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 350));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 500));
                 ChangeState(STATE_JUMP);
             }
         }
-        else if (Input.GetKey("s") && !isPlayingWalk && !isPlayingPunch)
+        else if (isCrouching && !isPlayingWalk && !isPlayingPunch)
         {
             ChangeState(STATE_CROUCH);
         }
