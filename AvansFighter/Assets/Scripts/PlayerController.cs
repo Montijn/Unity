@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     private const int STATE_CROUCH_PUNCH = 4;
     private const int STATE_PUNCH = 5;
     private const int STATE_JUMP_KICK = 6;
-    
+    private const int STATE_KICK = 7;
+
     private bool isPlayingCrouch = false;
     private bool isPlayingWalk = false;
     private bool isPlayingPunch = false;
@@ -35,18 +36,23 @@ public class PlayerController : MonoBehaviour
         {
             ChangeState(STATE_CROUCH_PUNCH);
         }
-        else if (Input.GetKey("k")) {
+        else if (Input.GetKey("k"))
+        {
             if (isGrounded)
             {
                 isGrounded = false;
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 340));
                 ChangeState(STATE_JUMP_KICK);
             }
-           
+
         }
         else if (Input.GetKey("j"))
         {
-                ChangeState(STATE_PUNCH);
+            ChangeState(STATE_PUNCH);
+        }
+        else if (Input.GetKey("l"))
+        {
+            ChangeState(STATE_KICK);
         }
         else if (Input.GetKey("w") && !isPlayingPunch && !isPlayingCrouch)
         {

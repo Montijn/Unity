@@ -11,20 +11,24 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("PunchHitBox"))
+        switch (collider.tag)
         {
-            Debug.Log("Enemy hit by punch!");
-            TakeDamage(10);
-        }
-        else if (collider.CompareTag("CrouchPunchHitbox"))
-        {
-            Debug.Log("Enemy hit by crouch punch!");
-            TakeDamage(10);
-        }
-        else if (collider.CompareTag("JumpKickHitbox"))
-        {
-            Debug.Log("Enemy hit by jump kick!");
-            TakeDamage(30);
+            case "PunchHitBox":
+                Debug.Log("Enemy hit by punch!");
+                TakeDamage(10);
+                break;
+            case "CrouchPunchHitbox":
+                Debug.Log("Enemy hit by crouch punch!");
+                TakeDamage(10);
+                break;
+            case "JumpKickHitbox":
+                Debug.Log("Enemy hit by jump kick!");
+                TakeDamage(30);
+                break;
+            case "KickHitbox":
+                Debug.Log("Enemy hit by kick!");
+                TakeDamage(10);
+                break;
         }
     }
 
@@ -43,6 +47,5 @@ public class Enemy : MonoBehaviour
     {
         // Add your desired logic for enemy death
         Debug.Log("Enemy died!");
-
     }
 }

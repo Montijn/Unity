@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - CrouchPunchHitbox
   - JumpKickHitbox
+  - KickHitbox
   layers:
   - Default
   - TransparentFX
