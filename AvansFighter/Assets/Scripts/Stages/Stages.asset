@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcdef383e7f93cc49b71cec8031ad983, type: 3}
+  m_Name: Stages
+  m_EditorClassIdentifier: 
+  stages:
+  - stageName: U.S.A
+    stageSprite: {fileID: 21300000, guid: 063a14bd4a83752469571630b0561ca0, type: 3}
+    stageImage: {fileID: 0}
