@@ -115,14 +115,6 @@ public class PlayerController : MonoBehaviour
         currentAnimationState = state;
     }
 
-    private void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.name == "Floor")
-        {
-            isGrounded = true;
-            ChangeState(STATE_IDLE);
-        }
-    }
 
     private void ChangeDirection(float direction)
     {

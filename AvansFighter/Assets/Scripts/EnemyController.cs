@@ -3,7 +3,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public float walkSpeed = 5;
-    public float walkDuration = 2f;
+    public float walkDuration = 1f;
+    public float idleDuration = 2f;
     private Animator animator;
     private const int STATE_IDLE = 0;
     private const int STATE_WALK = 1;
@@ -15,7 +16,7 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
     private bool isMoving = false; // Flag to determine if the enemy is currently moving
     private float moveTimer = 0f; // Timer for controlling movement
-    private float attackDelay = 1f; // Delay before performing an attack
+    private float idleTimer = 0f; // Timer for controlling idle duration
 
     private void Start()
     {
@@ -23,15 +24,18 @@ public class EnemyController : MonoBehaviour
         ChangeState(STATE_IDLE);
         player = GameObject.FindGameObjectWithTag("Player");
         ChangeDirection(player.transform.position.x - transform.position.x);
+
+        // Start with an initial idle duration
+        idleTimer = Random.Range(1f, 4f);
     }
 
     private void Update()
     {
         if (!isMoving)
         {
-            moveTimer -= Time.deltaTime;
+            idleTimer -= Time.deltaTime;
 
-            if (moveTimer <= 0f)
+            if (idleTimer <= 0f)
             {
                 // Start the movement towards the player
                 isMoving = true;
@@ -50,10 +54,12 @@ public class EnemyController : MonoBehaviour
             {
                 // Stop moving and perform an attack
                 isMoving = false;
+                ChangeState(STATE_IDLE);
                 PerformRandomAttack();
 
                 // Reset the timer for the next movement
-                moveTimer = Random.Range(0.5f, 1.5f);
+                idleTimer = Random.Range(1f, 4f);
+                moveTimer = 0f; // No delay before transitioning to idle
             }
         }
 
@@ -114,5 +120,7 @@ public class EnemyController : MonoBehaviour
                 ChangeState(STATE_IDLE);
                 break;
         }
+
     }
+
 }

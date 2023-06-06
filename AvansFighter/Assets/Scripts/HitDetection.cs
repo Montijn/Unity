@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Enemy : MonoBehaviour
+public class HitDetection : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
