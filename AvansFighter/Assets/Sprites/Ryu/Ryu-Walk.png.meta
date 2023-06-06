@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0782bafa2610c804f8480ef40638f845
+guid: 3fa9340151e89774f9c9dee55e38c394
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -45,9 +45,9 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
-  spritePixelsToUnits: 48
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -117,223 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_0
+      name: Ryu-Walk_0
       rect:
         serializedVersion: 2
-        x: 124
-        y: 577
+        x: 89
+        y: 55
         width: 53
-        height: 101
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b25316efa5924ab4ebe9c289fd318679
-      internalID: 2051826268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_1
-      rect:
-        serializedVersion: 2
-        x: 110
-        y: 477
-        width: 69
-        height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f8e16ffb5ecb4b54faa0da231a37c661
-      internalID: -713470868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_2
-      rect:
-        serializedVersion: 2
-        x: 196
-        y: 580
-        width: 55
-        height: 85
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c4c8242fab729be4ca7eeb3a52124f13
-      internalID: 1633839551
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_3
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 573
-        width: 61
-        height: 105
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6984998aca94e54419f8d81cf8565088
-      internalID: -182515888
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_4
-      rect:
-        serializedVersion: 2
-        x: 109
-        y: 485
-        width: 66
-        height: 84
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10a03a572e2189149850976cc5c5a1dd
-      internalID: -1196785666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_5
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 372
-        width: 80
-        height: 91
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbe904310f237d04c86909b031be22ae
-      internalID: 1984493011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_6
-      rect:
-        serializedVersion: 2
-        x: 118
-        y: 250
-        width: 67
-        height: 105
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d4fbe846b836cc440a51888a23b5c869
-      internalID: -667550944
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_7
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 164
-        width: 57
-        height: 56
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6f5dab189ef9694b892973c3e5d62ac
-      internalID: -798639494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_8
-      rect:
-        serializedVersion: 2
-        x: 118
-        y: 31
-        width: 53
-        height: 106
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9dd1af9b1c2aa34091896e4b896080d
-      internalID: -1301490594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_9
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 581
-        width: 61
-        height: 103
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: faf794eff02ece14591161b35d40e894
-      internalID: 2064548736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_10
-      rect:
-        serializedVersion: 2
-        x: 178
-        y: 475
-        width: 73
-        height: 94
+        height: 83
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -341,19 +131,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 416f35811750cb24da946bfb3df136da
-      internalID: -246401281
+      spriteID: eb0ecb34e76850b4894f231c7c4f905b
+      internalID: 24179239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_11
+      name: Ryu-Walk_1
       rect:
         serializedVersion: 2
-        x: 408
-        y: 170
-        width: 66
+        x: 158
+        y: 55
+        width: 60
         height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -362,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd519ee233f3ca342a6393f9f9a26a44
-      internalID: 1357900569
+      spriteID: 9b0db52f19daeca409fa09b4acdeff7e
+      internalID: -706328274
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_12
+      name: Ryu-Walk_2
       rect:
         serializedVersion: 2
-        x: 475
-        y: 37
-        width: 72
-        height: 80
+        x: 242
+        y: 54
+        width: 64
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,8 +173,197 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a09a3b0f10fe5e458920b62ee4aafc1
-      internalID: -819851671
+      spriteID: 33e6673d43e0889419ab6338e8c2037b
+      internalID: 336818768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_3
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 56
+        width: 63
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7808cb03e447f94683f2e8ad4221a3a
+      internalID: -125280749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_4
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 55
+        width: 54
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b64a5bee18925e45a37e4be6386d755
+      internalID: 1516018587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 54
+        width: 50
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfd6caa6536ae9347923201c90e56042
+      internalID: 986215014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_6
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 56
+        width: 61
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec94378e86109374391f9fa71bfba571
+      internalID: -1605629664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_7
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 55
+        width: 59
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 941bf092d5c5da84698e806adf96d3fe
+      internalID: -578791749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_8
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 56
+        width: 57
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4d8c90dae914554983034c2c96b729c
+      internalID: -2042386476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_9
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 57
+        width: 58
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4d799c16a6ea3f459aeaa291b03dfdf
+      internalID: -568505643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_10
+      rect:
+        serializedVersion: 2
+        x: 963
+        y: 55
+        width: 58
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca9fff6b19a462b40af358fd54cc835d
+      internalID: 526314384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ryu-Walk_11
+      rect:
+        serializedVersion: 2
+        x: 1054
+        y: 56
+        width: 57
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cfd49cbd576a7a46957a3855da29d41
+      internalID: -250798169
       vertices: []
       indices: 
       edges: []
@@ -393,26 +372,25 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_10: -246401281
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_8: -667550944
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_4: 1633839551
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_9: -798639494
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_12: -819851671
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_5: -182515888
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_3: -713470868
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_1: 1214060220
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_0: 2051826268
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_2: 346450324
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_6: -1196785666
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_7: 1984493011
-      373-3738045_ryu-street-fighter-2-sprite-street-fighter-ryu_11: 1357900569
+      Ryu-Walk_9: -568505643
+      Ryu-Walk_4: 1516018587
+      Ryu-Walk_1: -706328274
+      Ryu-Walk_3: -125280749
+      Ryu-Walk_7: -578791749
+      Ryu-Walk_10: 526314384
+      Ryu-Walk_5: 986215014
+      Ryu-Walk_11: -250798169
+      Ryu-Walk_8: -2042386476
+      Ryu-Walk_0: 24179239
+      Ryu-Walk_6: -1605629664
+      Ryu-Walk_2: 336818768
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

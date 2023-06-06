@@ -1,0 +1,132 @@
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public float walkSpeed = 1;
+    private bool isGrounded = true;
+    private Animator animator;
+    private const int STATE_IDLE = 0;
+    private const int STATE_WALK = 1;
+    private const int STATE_CROUCH = 2;
+    private const int STATE_JUMP = 3;
+    private const int STATE_CROUCH_PUNCH = 4;
+    private const int STATE_PUNCH = 5;
+    private const int STATE_JUMP_KICK = 6;
+    private const int STATE_KICK = 7;
+
+    private bool isPlayingCrouch = false;
+    private bool isPlayingWalk = false;
+    private bool isPlayingPunch = false;
+    private int currentAnimationState = STATE_IDLE;
+    private bool isCrouching = false;
+    public GameObject enemy;
+
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+        ChangeState(STATE_IDLE);
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        ChangeDirection(enemy.transform.position.x - transform.position.x);
+    }
+
+    private void FixedUpdate()
+    {
+        isCrouching = Input.GetKey("s");
+        if (isCrouching && Input.GetKey("j"))
+        {
+            ChangeState(STATE_CROUCH_PUNCH);
+        }
+        else if (Input.GetKey("k"))
+        {
+            if (isGrounded)
+            {
+                isGrounded = false;
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 340));
+                ChangeState(STATE_JUMP_KICK);
+            }
+
+        }
+        else if (Input.GetKey("j"))
+        {
+            ChangeState(STATE_PUNCH);
+        }
+        else if (Input.GetKey("l"))
+        {
+            ChangeState(STATE_KICK);
+        }
+        else if (Input.GetKey("w") && !isPlayingPunch && !isPlayingCrouch)
+        {
+            if (isGrounded)
+            {
+                isGrounded = false;
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 500));
+                ChangeState(STATE_JUMP);
+            }
+        }
+        else if (isCrouching && !isPlayingWalk && !isPlayingPunch)
+        {
+            ChangeState(STATE_CROUCH);
+        }
+        else if (Input.GetKey("d") && !isPlayingPunch)
+        {
+            ChangeDirection(enemy.transform.position.x - transform.position.x);
+            if (enemy.transform.position.x - transform.position.x > 0)
+            {
+                transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+            }
+            if (isGrounded)
+                ChangeState(STATE_WALK);
+        }
+        else if (Input.GetKey("a") && !isPlayingPunch)
+        {
+            ChangeDirection(enemy.transform.position.x - transform.position.x);
+            if (enemy.transform.position.x - transform.position.x > 0)
+            {
+                transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
+            }
+            if (isGrounded)
+                ChangeState(STATE_WALK);
+        }
+        else
+        {
+            if (isGrounded)
+                ChangeState(STATE_IDLE);
+        }
+
+        isPlayingCrouch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Crouch");
+        isPlayingPunch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Punch");
+        isPlayingWalk = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk");
+    }
+
+    private void ChangeState(int state)
+    {
+        if (currentAnimationState == state)
+            return;
+
+        animator.SetInteger("state", state);
+        currentAnimationState = state;
+    }
+
+
+    private void ChangeDirection(float direction)
+    {
+        if (direction > 0)
+        {
+            // Enemy is to the right of the player
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            // Enemy is to the left of the player
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+    }
+}
