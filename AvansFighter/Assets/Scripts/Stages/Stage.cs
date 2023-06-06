@@ -9,5 +9,4 @@ public class Stage
 {
     public string stageName;
     public Sprite stageSprite;
-    public Image stageImage;
 }

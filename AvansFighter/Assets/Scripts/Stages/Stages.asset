@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Stages
   m_EditorClassIdentifier: 
   stages:
-  - stageName: U.S.A
-    stageSprite: {fileID: 21300000, guid: 063a14bd4a83752469571630b0561ca0, type: 3}
-    stageImage: {fileID: 0}
+  - stageName: USA
+    stageSprite: {fileID: 21300000, guid: fd616faa18ec73b44ad16e739b7a635f, type: 3}
+  - stageName: India
+    stageSprite: {fileID: 21300000, guid: dce6feb70c24a2e4fa84931b65e56339, type: 3}
+  - stageName: Hongkong
+    stageSprite: {fileID: 21300000, guid: f2c237955bc6b6f49939c1a28e663a91, type: 3}

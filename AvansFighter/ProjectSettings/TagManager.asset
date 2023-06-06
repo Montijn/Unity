@@ -44,6 +44,9 @@ TagManager:
   - name: BackGround
     uniqueID: 3816122319
     locked: 0
-  - name: UI
+  - name: PlayableArea
     uniqueID: 2148049191
+    locked: 0
+  - name: Foreground
+    uniqueID: 2091527335
     locked: 0

@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
     public StageDatabase stageDB;
 
-    public Text nameText;
+    public TMP_Text nameText;
     public SpriteRenderer stageSprite;
 
     private int selectedOption = 0;
@@ -46,5 +48,10 @@ public class StageManager : MonoBehaviour
         Stage stage = stageDB.GetStage(selectedOption);
         stageSprite.sprite = stage.stageSprite;
         nameText.text = stage.stageName;
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(stageDB.GetStage(selectedOption).stageName);
     }
 }

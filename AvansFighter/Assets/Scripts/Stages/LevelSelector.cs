@@ -5,14 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class LevelSelector : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    public Stage selectedStage;
 
     public void OpenScene()
     {
-        SceneManager.LoadScene("India");
+        SceneManager.LoadScene(selectedStage.stageName);
     }
 }
