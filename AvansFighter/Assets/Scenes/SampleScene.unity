@@ -716,6 +716,7 @@ GameObject:
   - component: {fileID: 1100729751}
   - component: {fileID: 1100729752}
   - component: {fileID: 1100729753}
+  - component: {fileID: 1100729754}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -890,6 +891,24 @@ MonoBehaviour:
   walkDuration: 2
   idleDuration: 2
   player: {fileID: 0}
+--- !u!255 &1100729754
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100729746}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 6.062, y: -1.1516}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &1308976990
 GameObject:
   m_ObjectHideFlags: 0
@@ -905,6 +924,7 @@ GameObject:
   - component: {fileID: 1308976996}
   - component: {fileID: 1308976997}
   - component: {fileID: 1308976998}
+  - component: {fileID: 1308976999}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -946,7 +966,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 0
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!212 &1308976994
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1077,6 +1097,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!255 &1308976999
+FixedJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308976990}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 1
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: -4.56, y: -1.3}
+  m_DampingRatio: 0
+  m_Frequency: 0
 --- !u!1 &1495753231
 GameObject:
   m_ObjectHideFlags: 0

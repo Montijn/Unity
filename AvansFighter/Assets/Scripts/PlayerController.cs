@@ -21,17 +21,20 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
     public GameObject enemy;
 
+
+
     private void Start()
     {
         animator = GetComponent<Animator>();
-        ChangeState(STATE_IDLE);
         enemy = GameObject.FindGameObjectWithTag("Enemy");
+        ChangeState(STATE_IDLE);
         ChangeDirection(enemy.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
         isCrouching = Input.GetKey("s");
+
         if (isCrouching && Input.GetKey("j"))
         {
             ChangeState(STATE_CROUCH_PUNCH);
@@ -41,7 +44,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 isGrounded = false;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 340));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 190));
                 ChangeState(STATE_JUMP_KICK);
             }
 
@@ -59,7 +62,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 isGrounded = false;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 500));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 250));
                 ChangeState(STATE_JUMP);
             }
         }
@@ -116,7 +119,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.name == "Floor")
+        if (coll.gameObject.name == "Foreground")
         {
             isGrounded = true;
             ChangeState(STATE_IDLE);

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float walkSpeed = 5;
-    public float walkDuration = 1f;
+    public float walkSpeed = 0.5f;
+    public float walkDuration = 1;
     public float idleDuration = 2f;
     private Animator animator;
     private const int STATE_IDLE = 0;
@@ -17,12 +17,15 @@ public class EnemyController : MonoBehaviour
     private bool isMoving = false; // Flag to determine if the enemy is currently moving
     private float moveTimer = 0f; // Timer for controlling movement
     private float idleTimer = 0f; // Timer for controlling idle duration
+    private bool isAttacking;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        ChangeState(STATE_IDLE);
         player = GameObject.FindGameObjectWithTag("Player");
+        isAttacking = animator.GetCurrentAnimatorStateInfo(0).IsName("Ryu-Punch") || animator.GetCurrentAnimatorStateInfo(0).IsName("Ryu-Kick");
+        ChangeState(STATE_IDLE);
+        
         ChangeDirection(player.transform.position.x - transform.position.x);
 
         // Start with an initial idle duration
@@ -31,52 +34,39 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        if (!isMoving)
+        ChangeDirection(player.transform.position.x - transform.position.x);
+
+        if (!isMoving && !isAttacking)
         {
             idleTimer -= Time.deltaTime;
 
             if (idleTimer <= 0f)
             {
-                // Start the movement towards the player
+                idleTimer = Random.Range(1f, 4f);
                 isMoving = true;
                 moveTimer = walkDuration;
 
                 ChangeState(STATE_WALK);
-                ChangeDirection(player.transform.position.x - transform.position.x);
             }
         }
         else
         {
-            // Enemy is currently moving
             moveTimer -= Time.deltaTime;
 
             if (moveTimer <= 0f)
             {
-                // Stop moving and perform an attack
                 isMoving = false;
                 ChangeState(STATE_IDLE);
                 PerformRandomAttack();
-
-                // Reset the timer for the next movement
-                idleTimer = Random.Range(1f, 4f);
-                moveTimer = 0f; // No delay before transitioning to idle
+                moveTimer = 0f;
             }
         }
 
         if (isMoving)
         {
-            // Move towards the player's position
-            if (player.transform.position.x - transform.position.x > 0)
-            {
-                transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
-            }
-            else
-            {
                 transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
-            }
         }
     }
-
     private void ChangeState(int state)
     {
         if (currentAnimationState == state)
