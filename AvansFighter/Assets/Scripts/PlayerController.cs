@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             {
                 fixedJoint.enabled = false;
                 isGrounded = false;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 340));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 190));
                 ChangeState(STATE_JUMP_KICK);
             }
 
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
             {
                 fixedJoint.enabled = false;
                 isGrounded = false;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 500));
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 250));
                 ChangeState(STATE_JUMP);
             }
         }
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D coll)
     {
-        if (coll.gameObject.name == "Floor")
+        if (coll.gameObject.name == "Foreground")
         {
             isGrounded = true;
             ChangeState(STATE_IDLE);
