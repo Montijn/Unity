@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float walkSpeed = 1;
-    public float walkDuration = 0.5f;
+    public float walkSpeed = 0.5f;
+    public float walkDuration = 1;
     public float idleDuration = 2f;
     private Animator animator;
     private const int STATE_IDLE = 0;
