@@ -20,18 +20,26 @@ public class PlayerController : MonoBehaviour
     private int currentAnimationState = STATE_IDLE;
     private bool isCrouching = false;
     public GameObject enemy;
+    private FixedJoint2D fixedJoint;
+
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        ChangeState(STATE_IDLE);
         enemy = GameObject.FindGameObjectWithTag("Enemy");
+        fixedJoint = GetComponent<FixedJoint2D>();
+        ChangeState(STATE_IDLE);
         ChangeDirection(enemy.transform.position.x - transform.position.x);
     }
 
     private void FixedUpdate()
     {
         isCrouching = Input.GetKey("s");
+
+        if (isGrounded)
+        {
+            fixedJoint.enabled = true;
+        }
         if (isCrouching && Input.GetKey("j"))
         {
             ChangeState(STATE_CROUCH_PUNCH);
@@ -40,6 +48,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
+                fixedJoint.enabled = false;
                 isGrounded = false;
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 340));
                 ChangeState(STATE_JUMP_KICK);
@@ -58,6 +67,7 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
+                fixedJoint.enabled = false;
                 isGrounded = false;
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 500));
                 ChangeState(STATE_JUMP);
