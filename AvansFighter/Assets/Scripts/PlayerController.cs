@@ -6,9 +6,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource punchSoundEffect;
     [SerializeField] private AudioSource jumpKickSoundEffect;
     [SerializeField] private AudioSource jumpSoundEffect;
+    private GameObject enemy;
+    private Animator animator;
     public float walkSpeed = 1;
     private bool isGrounded = true;
-    private Animator animator;
+    private bool isPlayingCrouch = false;
+    private bool isPlayingWalk = false;
+    private bool isPlayingPunch = false;
+    private bool isPlayingHit = false;
+    private bool isCrouching = false;
+
     private const int STATE_IDLE = 0;
     private const int STATE_WALK = 1;
     private const int STATE_CROUCH = 2;
@@ -17,15 +24,9 @@ public class PlayerController : MonoBehaviour
     private const int STATE_PUNCH = 5;
     private const int STATE_JUMP_KICK = 6;
     private const int STATE_KICK = 7;
-
-    private bool isPlayingCrouch = false;
-    private bool isPlayingWalk = false;
-    private bool isPlayingPunch = false;
-    private bool isPlayingHit = false;
     private int currentAnimationState = STATE_IDLE;
-    private bool isCrouching = false;
-    private GameObject enemy;
 
+    private int comboCounter = 0;
 
 
     private void Start()
@@ -40,7 +41,15 @@ public class PlayerController : MonoBehaviour
     {
         isCrouching = Input.GetKey("s");
 
-
+        if (enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Ryu-Hit"))
+        {
+            comboCounter++;
+            Debug.Log(comboCounter);
+        }
+        if(animator.GetInteger("state") == 8)
+        {
+            comboCounter = 0;
+        }
         if (!isPlayingHit)
         {
             if (isCrouching && Input.GetKey("j"))
@@ -48,7 +57,7 @@ public class PlayerController : MonoBehaviour
                 ChangeState(STATE_CROUCH_PUNCH);
                 punchSoundEffect.Play();
             }
-            else if (Input.GetKey("k"))
+            else if (Input.GetKey("k") && comboCounter == 75)
             {
                 if (isGrounded)
                 {
@@ -67,6 +76,7 @@ public class PlayerController : MonoBehaviour
                 {
                     punchSoundEffect.Play();
                 }
+
 
             }
             else if (Input.GetKey("l"))

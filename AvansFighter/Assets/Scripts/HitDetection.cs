@@ -18,43 +18,47 @@ public class HitDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        switch (collider.tag)
+        if(animator.GetInteger("state") != 2)
         {
-            case "PunchHitBox":
-                Debug.Log("Hit by punch!");
-                hitSoundEffect.Play();
-                hitSoundEffect.Play();
-                animator.SetInteger("state", 8);
-                isHitAnimationPlaying = true;
-                TakeDamage(10);
-                StartCoroutine(TransitionToIdle());
-                break;
-            case "CrouchPunchHitbox":
-                Debug.Log("Hit by crouch punch!");
-                hitSoundEffect.Play();
-                hitSoundEffect.Play();
-                animator.SetInteger("state", 8);
-                isHitAnimationPlaying = true;
-                TakeDamage(10);
-                StartCoroutine(TransitionToIdle());
-                break;
-            case "JumpKickHitbox":
-                hitSoundEffect.Play();
-                animator.SetInteger("state", 8);
-                Debug.Log("Hit by jump kick!");
-                isHitAnimationPlaying = true;
-                TakeDamage(30);
-                StartCoroutine(TransitionToIdle());
-                break;
-            case "KickHitbox":
-                Debug.Log("Hit by kick!");
-                animator.SetInteger("state", 8);
-                hitSoundEffect.Play();
-                isHitAnimationPlaying = true;
-                TakeDamage(20);
-                StartCoroutine(TransitionToIdle());
-                break;
+            switch (collider.tag)
+            {
+                case "PunchHitBox":
+                    Debug.Log("Hit by punch!");
+                    hitSoundEffect.Play();
+                    hitSoundEffect.Play();
+                    animator.SetInteger("state", 8);
+                    isHitAnimationPlaying = true;
+                    TakeDamage(10);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "CrouchPunchHitbox":
+                    Debug.Log("Hit by crouch punch!");
+                    hitSoundEffect.Play();
+                    hitSoundEffect.Play();
+                    animator.SetInteger("state", 8);
+                    isHitAnimationPlaying = true;
+                    TakeDamage(10);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "JumpKickHitbox":
+                    hitSoundEffect.Play();
+                    animator.SetInteger("state", 8);
+                    Debug.Log("Hit by jump kick!");
+                    isHitAnimationPlaying = true;
+                    TakeDamage(30);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "KickHitbox":
+                    Debug.Log("Hit by kick!");
+                    animator.SetInteger("state", 8);
+                    hitSoundEffect.Play();
+                    isHitAnimationPlaying = true;
+                    TakeDamage(20);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+            }
         }
+       
     }
 
     private IEnumerator TransitionToIdle()
