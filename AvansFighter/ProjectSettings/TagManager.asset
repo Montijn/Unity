@@ -9,6 +9,7 @@ TagManager:
   - CrouchPunchHitbox
   - JumpKickHitbox
   - KickHitbox
+  - AvansHitbox
   layers:
   - Default
   - TransparentFX

@@ -1352,6 +1352,9 @@ MonoBehaviour:
   punchSoundEffect: {fileID: 1496852382}
   jumpKickSoundEffect: {fileID: 1496852384}
   jumpSoundEffect: {fileID: 1496852383}
+  distanceOffset: 1
+  heightOffset: 0.15
+  avans: {fileID: 2614405126074824846, guid: 93f50364ce9ad20488ca9ab741660f14, type: 3}
   walkSpeed: 1
 --- !u!50 &1496852377
 Rigidbody2D:

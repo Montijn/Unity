@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,6 +7,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource punchSoundEffect;
     [SerializeField] private AudioSource jumpKickSoundEffect;
     [SerializeField] private AudioSource jumpSoundEffect;
+    [SerializeField] private float distanceOffset = 1f;
+    [SerializeField] private float heightOffset = 0.5f;
+    [SerializeField] private GameObject avans;
     private GameObject enemy;
     private Animator animator;
     public float walkSpeed = 1;
@@ -24,10 +28,12 @@ public class PlayerController : MonoBehaviour
     private const int STATE_PUNCH = 5;
     private const int STATE_JUMP_KICK = 6;
     private const int STATE_KICK = 7;
+    private const int STATE_SPECIAL = 9;
     private int currentAnimationState = STATE_IDLE;
 
     private int comboCounter = 0;
-
+    private bool previousHitState = false;
+    private bool hasSpawnedAvans = false;
 
     private void Start()
     {
@@ -37,19 +43,26 @@ public class PlayerController : MonoBehaviour
         ChangeDirection(enemy.transform.position.x - transform.position.x);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         isCrouching = Input.GetKey("s");
+        bool currentHitState = enemy.GetComponent<HitDetection>().IsHit;
 
-        if (enemy.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Ryu-Hit"))
+        if (currentHitState && !previousHitState && !isPlayingHit)
         {
+            // Enemy has been hit (transition from false to true)
             comboCounter++;
-            Debug.Log(comboCounter);
+            Debug.Log("Combo Counter: " + comboCounter);
         }
-        if(animator.GetInteger("state") == 8)
+
+        if (!currentHitState && isPlayingHit)
         {
+            // Player has been hit
             comboCounter = 0;
         }
+
+        previousHitState = currentHitState;
+
         if (!isPlayingHit)
         {
             if (isCrouching && Input.GetKey("j"))
@@ -57,7 +70,7 @@ public class PlayerController : MonoBehaviour
                 ChangeState(STATE_CROUCH_PUNCH);
                 punchSoundEffect.Play();
             }
-            else if (Input.GetKey("k") && comboCounter == 75)
+            else if (Input.GetKey("k"))
             {
                 if (isGrounded)
                 {
@@ -66,7 +79,10 @@ public class PlayerController : MonoBehaviour
                     ChangeState(STATE_JUMP_KICK);
                     jumpKickSoundEffect.Play();
                 }
-
+            }
+            else if (Input.GetKey("i") && !isPlayingPunch && !isPlayingCrouch && !isPlayingHit && comboCounter >= 3)
+            {
+                ChangeState(STATE_SPECIAL);
             }
             else if (Input.GetKey("j"))
             {
@@ -76,8 +92,6 @@ public class PlayerController : MonoBehaviour
                 {
                     punchSoundEffect.Play();
                 }
-
-
             }
             else if (Input.GetKey("l"))
             {
@@ -131,6 +145,10 @@ public class PlayerController : MonoBehaviour
                 if (isGrounded)
                     ChangeState(STATE_IDLE);
             }
+            if (currentAnimationState == STATE_SPECIAL && !hasSpawnedAvans)
+            {
+                SpawnAvans();
+            }
 
         }
 
@@ -148,6 +166,7 @@ public class PlayerController : MonoBehaviour
         animator.SetInteger("state", state);
         currentAnimationState = state;
     }
+
     private void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.name == "Foreground")
@@ -170,4 +189,24 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
+
+    private void SpawnAvans()
+    {
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (stateInfo.normalizedTime >= 1 && !stateInfo.loop)
+        {
+            Vector3 directionToEnemy = enemy.transform.position - transform.position;
+
+            Vector3 spawnPosition = transform.position + directionToEnemy.normalized * distanceOffset;
+
+            spawnPosition.y += heightOffset;
+
+            Instantiate(avans, spawnPosition, Quaternion.identity);
+
+            hasSpawnedAvans = true;
+        }
+    }
+
+  
 }

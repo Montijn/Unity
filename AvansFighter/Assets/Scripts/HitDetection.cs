@@ -9,7 +9,7 @@ public class HitDetection : MonoBehaviour
     private Animator animator;
 
     private bool isHitAnimationPlaying = false;
-
+    public bool IsHit { get; private set; }
     private void Start()
     {
         currentHealth = maxHealth;
@@ -23,37 +23,24 @@ public class HitDetection : MonoBehaviour
             switch (collider.tag)
             {
                 case "PunchHitBox":
-                    Debug.Log("Hit by punch!");
-                    hitSoundEffect.Play();
-                    hitSoundEffect.Play();
-                    animator.SetInteger("state", 8);
-                    isHitAnimationPlaying = true;
-                    TakeDamage(10);
+                    Hit(hitSoundEffect, 10);
                     StartCoroutine(TransitionToIdle());
                     break;
                 case "CrouchPunchHitbox":
-                    Debug.Log("Hit by crouch punch!");
-                    hitSoundEffect.Play();
-                    hitSoundEffect.Play();
-                    animator.SetInteger("state", 8);
-                    isHitAnimationPlaying = true;
-                    TakeDamage(10);
+                    Hit(hitSoundEffect, 10);
                     StartCoroutine(TransitionToIdle());
                     break;
                 case "JumpKickHitbox":
-                    hitSoundEffect.Play();
-                    animator.SetInteger("state", 8);
-                    Debug.Log("Hit by jump kick!");
-                    isHitAnimationPlaying = true;
-                    TakeDamage(30);
+                    Hit(hitSoundEffect, 10);
                     StartCoroutine(TransitionToIdle());
                     break;
                 case "KickHitbox":
-                    Debug.Log("Hit by kick!");
-                    animator.SetInteger("state", 8);
-                    hitSoundEffect.Play();
-                    isHitAnimationPlaying = true;
-                    TakeDamage(20);
+                    Hit(hitSoundEffect, 10);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "AvansHitbox":
+                    Hit(hitSoundEffect, 50);
+                    Destroy(collider.gameObject);
                     StartCoroutine(TransitionToIdle());
                     break;
             }
@@ -61,10 +48,20 @@ public class HitDetection : MonoBehaviour
        
     }
 
+    private void Hit(AudioSource audioSource, int damage)
+    {
+        audioSource.Play();
+        animator.SetInteger("state", 8);
+        isHitAnimationPlaying = true;
+        TakeDamage(damage);
+        IsHit = true;
+    }
+
     private IEnumerator TransitionToIdle()
     {
         yield return new WaitForSeconds(0.5f); // Adjust the delay as needed
         animator.SetInteger("state", 0); // Transition back to idle state
+        IsHit = false;
     }
 
     public void TakeDamage(int damage)
