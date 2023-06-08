@@ -3,7 +3,7 @@ public class HitDetection : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
-
+    [SerializeField] private AudioSource hitSoundEffect;
     private void Start()
     {
         currentHealth = maxHealth;
@@ -15,19 +15,25 @@ public class HitDetection : MonoBehaviour
         {
             case "PunchHitBox":
                 Debug.Log("Hit by punch!");
+                hitSoundEffect.Play();
+                hitSoundEffect.Play();
                 TakeDamage(10);
                 break;
             case "CrouchPunchHitbox":
                 Debug.Log("Hit by crouch punch!");
+                hitSoundEffect.Play();
+                hitSoundEffect.Play();
                 TakeDamage(10);
                 break;
             case "JumpKickHitbox":
+                hitSoundEffect.Play();
                 Debug.Log("Hit by jump kick!");
                 TakeDamage(30);
                 break;
             case "KickHitbox":
                 Debug.Log("Hit by kick!");
-                TakeDamage(10);
+                hitSoundEffect.Play();
+                TakeDamage(20);
                 break;
         }
     }

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] private AudioSource kickSoundEffect;
+    [SerializeField] private AudioSource punchSoundEffect;
+
     public float walkSpeed = 0.5f;
     public float walkDuration = 1;
     public float idleDuration = 2f;
@@ -93,18 +96,18 @@ public class EnemyController : MonoBehaviour
     private void PerformRandomAttack()
     {
         // Generate a random number to determine the attack action
-        int randomAction = Random.Range(0, 3);
+        int randomAction = Random.Range(0, 2);
 
         switch (randomAction)
         {
             case 0:
                 ChangeState(STATE_PUNCH);
+                punchSoundEffect.Play();
+                punchSoundEffect.Play();
                 break;
             case 1:
                 ChangeState(STATE_KICK);
-                break;
-            case 2:
-                ChangeState(STATE_CROUCH_PUNCH);
+                kickSoundEffect.Play();
                 break;
             default:
                 ChangeState(STATE_IDLE);

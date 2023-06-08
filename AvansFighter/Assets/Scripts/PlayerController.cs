@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private AudioSource kickSoundEffect;
+    [SerializeField] private AudioSource punchSoundEffect;
+    [SerializeField] private AudioSource jumpKickSoundEffect;
+    [SerializeField] private AudioSource jumpSoundEffect;
     public float walkSpeed = 1;
     private bool isGrounded = true;
     private Animator animator;
@@ -19,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool isPlayingPunch = false;
     private int currentAnimationState = STATE_IDLE;
     private bool isCrouching = false;
-    public GameObject enemy;
+    private GameObject enemy;
 
 
 
@@ -38,6 +42,7 @@ public class PlayerController : MonoBehaviour
         if (isCrouching && Input.GetKey("j"))
         {
             ChangeState(STATE_CROUCH_PUNCH);
+            punchSoundEffect.Play();
         }
         else if (Input.GetKey("k"))
         {
@@ -46,16 +51,24 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 190));
                 ChangeState(STATE_JUMP_KICK);
+                jumpKickSoundEffect.Play();
             }
 
         }
         else if (Input.GetKey("j"))
         {
             ChangeState(STATE_PUNCH);
+            punchSoundEffect.Play();
+            if (!punchSoundEffect.isPlaying)
+            {
+                punchSoundEffect.Play();
+            }
+            
         }
         else if (Input.GetKey("l"))
         {
             ChangeState(STATE_KICK);
+            kickSoundEffect.Play();
         }
         else if (Input.GetKey("w") && !isPlayingPunch && !isPlayingCrouch)
         {
@@ -64,6 +77,7 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 250));
                 ChangeState(STATE_JUMP);
+                jumpSoundEffect.Play();
             }
         }
         else if (isCrouching && !isPlayingWalk && !isPlayingPunch)
