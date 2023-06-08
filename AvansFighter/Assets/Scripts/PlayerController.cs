@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool isPlayingCrouch = false;
     private bool isPlayingWalk = false;
     private bool isPlayingPunch = false;
+    private bool isPlayingHit = false;
     private int currentAnimationState = STATE_IDLE;
     private bool isCrouching = false;
     private GameObject enemy;
@@ -39,88 +40,94 @@ public class PlayerController : MonoBehaviour
     {
         isCrouching = Input.GetKey("s");
 
-        if (isCrouching && Input.GetKey("j"))
-        {
-            ChangeState(STATE_CROUCH_PUNCH);
-            punchSoundEffect.Play();
-        }
-        else if (Input.GetKey("k"))
-        {
-            if (isGrounded)
-            {
-                isGrounded = false;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 190));
-                ChangeState(STATE_JUMP_KICK);
-                jumpKickSoundEffect.Play();
-            }
 
-        }
-        else if (Input.GetKey("j"))
+        if (!isPlayingHit)
         {
-            ChangeState(STATE_PUNCH);
-            punchSoundEffect.Play();
-            if (!punchSoundEffect.isPlaying)
+            if (isCrouching && Input.GetKey("j"))
             {
+                ChangeState(STATE_CROUCH_PUNCH);
                 punchSoundEffect.Play();
             }
-            
-        }
-        else if (Input.GetKey("l"))
-        {
-            ChangeState(STATE_KICK);
-            kickSoundEffect.Play();
-        }
-        else if (Input.GetKey("w") && !isPlayingPunch && !isPlayingCrouch)
-        {
-            if (isGrounded)
+            else if (Input.GetKey("k"))
             {
-                isGrounded = false;
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 250));
-                ChangeState(STATE_JUMP);
-                jumpSoundEffect.Play();
+                if (isGrounded)
+                {
+                    isGrounded = false;
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 190));
+                    ChangeState(STATE_JUMP_KICK);
+                    jumpKickSoundEffect.Play();
+                }
+
             }
-        }
-        else if (isCrouching && !isPlayingWalk && !isPlayingPunch)
-        {
-            ChangeState(STATE_CROUCH);
-        }
-        else if (Input.GetKey("d") && !isPlayingPunch)
-        {
-            ChangeDirection(enemy.transform.position.x - transform.position.x);
-            if (enemy.transform.position.x - transform.position.x > 0)
+            else if (Input.GetKey("j"))
             {
-                transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
+                ChangeState(STATE_PUNCH);
+                punchSoundEffect.Play();
+                if (!punchSoundEffect.isPlaying)
+                {
+                    punchSoundEffect.Play();
+                }
+
+            }
+            else if (Input.GetKey("l"))
+            {
+                ChangeState(STATE_KICK);
+                kickSoundEffect.Play();
+            }
+            else if (Input.GetKey("w") && !isPlayingPunch && !isPlayingCrouch)
+            {
+                if (isGrounded)
+                {
+                    isGrounded = false;
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 250));
+                    ChangeState(STATE_JUMP);
+                    jumpSoundEffect.Play();
+                }
+            }
+            else if (isCrouching && !isPlayingWalk && !isPlayingPunch)
+            {
+                ChangeState(STATE_CROUCH);
+            }
+            else if (Input.GetKey("d") && !isPlayingPunch)
+            {
+                ChangeDirection(enemy.transform.position.x - transform.position.x);
+                if (enemy.transform.position.x - transform.position.x > 0)
+                {
+                    transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+                }
+                if (isGrounded)
+                    ChangeState(STATE_WALK);
+            }
+            else if (Input.GetKey("a") && !isPlayingPunch)
+            {
+                ChangeDirection(enemy.transform.position.x - transform.position.x);
+                if (enemy.transform.position.x - transform.position.x > 0)
+                {
+                    transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
+                }
+                if (isGrounded)
+                    ChangeState(STATE_WALK);
             }
             else
             {
-                transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+                if (isGrounded)
+                    ChangeState(STATE_IDLE);
             }
-            if (isGrounded)
-                ChangeState(STATE_WALK);
-        }
-        else if (Input.GetKey("a") && !isPlayingPunch)
-        {
-            ChangeDirection(enemy.transform.position.x - transform.position.x);
-            if (enemy.transform.position.x - transform.position.x > 0)
-            {
-                transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
-            }
-            if (isGrounded)
-                ChangeState(STATE_WALK);
-        }
-        else
-        {
-            if (isGrounded)
-                ChangeState(STATE_IDLE);
+
         }
 
         isPlayingCrouch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Crouch");
         isPlayingPunch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Punch");
         isPlayingWalk = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk");
+        isPlayingHit = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Hit");
     }
 
     private void ChangeState(int state)

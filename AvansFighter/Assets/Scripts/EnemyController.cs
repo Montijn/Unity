@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -11,7 +12,6 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private const int STATE_IDLE = 0;
     private const int STATE_WALK = 1;
-    private const int STATE_CROUCH_PUNCH = 4;
     private const int STATE_PUNCH = 5;
     private const int STATE_KICK = 7;
 
@@ -21,6 +21,7 @@ public class EnemyController : MonoBehaviour
     private float moveTimer = 0f; // Timer for controlling movement
     private float idleTimer = 0f; // Timer for controlling idle duration
     private bool isAttacking;
+    private bool isPlayingHit = false;
 
     private void Start()
     {
@@ -39,36 +40,40 @@ public class EnemyController : MonoBehaviour
     {
         ChangeDirection(player.transform.position.x - transform.position.x);
 
-        if (!isMoving && !isAttacking)
+        if (!isPlayingHit)
         {
-            idleTimer -= Time.deltaTime;
-
-            if (idleTimer <= 0f)
+            if (!isMoving && !isAttacking)
             {
-                idleTimer = Random.Range(1f, 4f);
-                isMoving = true;
-                moveTimer = walkDuration;
+                idleTimer -= Time.deltaTime;
 
-                ChangeState(STATE_WALK);
+                if (idleTimer <= 0f)
+                {
+                    idleTimer = Random.Range(1f, 4f);
+                    isMoving = true;
+                    moveTimer = walkDuration;
+
+                    ChangeState(STATE_WALK);
+                }
             }
-        }
-        else
-        {
-            moveTimer -= Time.deltaTime;
-
-            if (moveTimer <= 0f)
+            else
             {
-                isMoving = false;
-                ChangeState(STATE_IDLE);
-                PerformRandomAttack();
-                moveTimer = 0f;
-            }
-        }
+                moveTimer -= Time.deltaTime;
 
-        if (isMoving)
-        {
+                if (moveTimer <= 0f)
+                {
+                    isMoving = false;
+                    ChangeState(STATE_IDLE);
+                    PerformRandomAttack();
+                    moveTimer = 0f;
+                }
+            }
+
+            if (isMoving)
+            {
                 transform.Translate(Vector3.right * walkSpeed * Time.deltaTime);
+            }
         }
+        isPlayingHit = animator.GetCurrentAnimatorStateInfo(0).IsName("Ryu-Hit");
     }
     private void ChangeState(int state)
     {
@@ -104,10 +109,12 @@ public class EnemyController : MonoBehaviour
                 ChangeState(STATE_PUNCH);
                 punchSoundEffect.Play();
                 punchSoundEffect.Play();
+                StartCoroutine(TransitionToIdle());
                 break;
             case 1:
                 ChangeState(STATE_KICK);
                 kickSoundEffect.Play();
+                StartCoroutine(TransitionToIdle());
                 break;
             default:
                 ChangeState(STATE_IDLE);
@@ -115,5 +122,12 @@ public class EnemyController : MonoBehaviour
         }
 
     }
+    private IEnumerator TransitionToIdle()
+    {
+        yield return new WaitForSeconds(0.3f); // Adjust the delay as needed
+        animator.SetInteger("state", 0); // Transition back to idle state
+    }
+
+
 
 }
