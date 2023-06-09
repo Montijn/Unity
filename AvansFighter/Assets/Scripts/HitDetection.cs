@@ -8,12 +8,16 @@ public class HitDetection : MonoBehaviour
     [SerializeField] private AudioSource hitSoundEffect;
     [SerializeField] private Animator animator;
 
+    public HealthBar healthBar;
+    public ScoreController scoreController;
+
 
     private bool isHitAnimationPlaying = false;
     public bool IsHit { get; private set; }
     private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -71,6 +75,8 @@ public class HitDetection : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        scoreController.AddScore(damage);
         Debug.Log("Took " + damage + " damage. Current health: " + currentHealth);
 
         if (currentHealth <= 0)
@@ -83,5 +89,10 @@ public class HitDetection : MonoBehaviour
     {
         // Add your desired logic for enemy death
         Debug.Log("Died!");
+    }
+
+    public int getHealth()
+    {
+        return currentHealth;
     }
 }
