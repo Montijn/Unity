@@ -32,10 +32,15 @@ public class ScoreController : MonoBehaviour
     {
         int highScore = PlayerPrefs.GetInt("highscore");
 
-        int newScore = totalScore + (int)timer.getCurrentTime() * 2;
+        int newScore = (totalScore + (int)timer.getCurrentTime()) * 2;
         if(highScore < newScore)
         {
-            PlayerPrefs.SetInt("highscore", totalScore);
+            PlayerPrefs.SetInt("highscore", newScore);
         }
+    }
+
+    public string GetHighScore()
+    {
+        return PlayerPrefs.GetInt("highscore").ToString();
     }
 }

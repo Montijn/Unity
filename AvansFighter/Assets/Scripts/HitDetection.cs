@@ -76,7 +76,10 @@ public class HitDetection : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
-        scoreController.AddScore(damage);
+        if (gameObject.CompareTag("Enemy"))
+        {
+            scoreController.AddScore(damage);
+        }
         Debug.Log("Took " + damage + " damage. Current health: " + currentHealth);
 
         if (currentHealth <= 0)
