@@ -1349,13 +1349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2dffe09958e1846bd81ca32947bd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kickSoundEffect: {fileID: 1496852381}
-  punchSoundEffect: {fileID: 1496852382}
-  jumpKickSoundEffect: {fileID: 1496852384}
-  jumpSoundEffect: {fileID: 1496852383}
   distanceOffset: 1
   heightOffset: 0.15
   avans: {fileID: 2614405126074824846, guid: 93f50364ce9ad20488ca9ab741660f14, type: 3}
+  enemy: {fileID: 502109326}
+  animator: {fileID: 1496852375}
+  audioManager: {fileID: 0}
   walkSpeed: 1
 --- !u!50 &1496852377
 Rigidbody2D:
@@ -1941,10 +1940,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6912ce50bc68d47a38126461a3affa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kickSoundEffect: {fileID: 1496852381}
-  punchSoundEffect: {fileID: 1496852382}
-  jumpKickSoundEffect: {fileID: 1496852384}
-  jumpSoundEffect: {fileID: 1496852383}
 --- !u!1 &1631714751
 GameObject:
   m_ObjectHideFlags: 0
