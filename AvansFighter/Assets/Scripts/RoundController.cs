@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RoundController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class RoundController : MonoBehaviour
     public HitDetection player;
     public HitDetection enemy;
     public RoundTimer timer;
+    public ScoreController score;
 
     public int playerHealth;
     public int enemyHealth;
@@ -17,7 +19,7 @@ public class RoundController : MonoBehaviour
     {
         playerHealth = player.getHealth();
         enemyHealth = enemy.getHealth();
-        Debug.Log(timer.getCurrentTime());
+        
     }
 
     // Update is called once per frame
@@ -60,6 +62,14 @@ public class RoundController : MonoBehaviour
 
     private void selectWinner(string character)
     {
-        Debug.Log(character + " has won the game");
+        if(character == "Ken")
+        {
+            score.SubmitScore();
+            SceneManager.LoadScene("Ken_Ending");
+        } 
+        else
+        {
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }

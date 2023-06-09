@@ -225,5 +225,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  
+    public int getComboCounter()
+    {
+        return comboCounter;
+    }
 }
