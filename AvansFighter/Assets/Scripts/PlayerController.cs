@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
         ChangeState(STATE_IDLE);
         ChangeDirection(enemy.transform.position.x - transform.position.x);
     }
