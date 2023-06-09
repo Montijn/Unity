@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     private const int STATE_JUMP_KICK = 6;
     private const int STATE_KICK = 7;
     private const int STATE_SPECIAL = 9;
+    private const int STATE_CHEAT = 10;
     private int currentAnimationState = STATE_IDLE;
 
     private int comboCounter = 0;
@@ -101,6 +102,10 @@ public class PlayerController : MonoBehaviour
             else if (Input.GetKey("i") && comboCounter >= 3)
             {
                 ChangeState(STATE_SPECIAL);
+            }
+            else if (Input.GetKey("c") && !isPlayingMove)
+            {
+                ChangeState(STATE_CHEAT);
             }
             else if (Input.GetKey("l"))
             {

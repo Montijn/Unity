@@ -10,6 +10,7 @@ TagManager:
   - JumpKickHitbox
   - KickHitbox
   - AvansHitbox
+  - CheatHitbox
   layers:
   - Default
   - TransparentFX
