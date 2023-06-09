@@ -23,24 +23,28 @@ public class HitDetection : MonoBehaviour
             switch (collider.tag)
             {
                 case "PunchHitBox":
-                    Hit(hitSoundEffect, 10);
+                    Hit(hitSoundEffect, 5);
                     StartCoroutine(TransitionToIdle());
                     break;
                 case "CrouchPunchHitbox":
-                    Hit(hitSoundEffect, 10);
+                    Hit(hitSoundEffect, 5);
                     StartCoroutine(TransitionToIdle());
                     break;
                 case "JumpKickHitbox":
-                    Hit(hitSoundEffect, 10);
+                    Hit(hitSoundEffect, 15);
                     StartCoroutine(TransitionToIdle());
                     break;
                 case "KickHitbox":
-                    Hit(hitSoundEffect, 10);
+                    Hit(hitSoundEffect, 5);
                     StartCoroutine(TransitionToIdle());
                     break;
                 case "AvansHitbox":
                     Hit(hitSoundEffect, 50);
                     Destroy(collider.gameObject);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "CheatHitbox":
+                    Hit(hitSoundEffect, 100);
                     StartCoroutine(TransitionToIdle());
                     break;
             }
