@@ -1,35 +1,67 @@
+using System.Collections;
 using UnityEngine;
+
 public class HitDetection : MonoBehaviour
 {
     public int maxHealth = 100;
     private int currentHealth;
+    [SerializeField] private AudioSource hitSoundEffect;
+    private Animator animator;
 
+    private bool isHitAnimationPlaying = false;
+    public bool IsHit { get; private set; }
     private void Start()
     {
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        switch (collider.tag)
+        if(animator.GetInteger("state") != 2)
         {
-            case "PunchHitBox":
-                Debug.Log("Hit by punch!");
-                TakeDamage(10);
-                break;
-            case "CrouchPunchHitbox":
-                Debug.Log("Hit by crouch punch!");
-                TakeDamage(10);
-                break;
-            case "JumpKickHitbox":
-                Debug.Log("Hit by jump kick!");
-                TakeDamage(30);
-                break;
-            case "KickHitbox":
-                Debug.Log("Hit by kick!");
-                TakeDamage(10);
-                break;
+            switch (collider.tag)
+            {
+                case "PunchHitBox":
+                    Hit(hitSoundEffect, 10);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "CrouchPunchHitbox":
+                    Hit(hitSoundEffect, 10);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "JumpKickHitbox":
+                    Hit(hitSoundEffect, 10);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "KickHitbox":
+                    Hit(hitSoundEffect, 10);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+                case "AvansHitbox":
+                    Hit(hitSoundEffect, 50);
+                    Destroy(collider.gameObject);
+                    StartCoroutine(TransitionToIdle());
+                    break;
+            }
         }
+       
+    }
+
+    private void Hit(AudioSource audioSource, int damage)
+    {
+        audioSource.Play();
+        animator.SetInteger("state", 8);
+        isHitAnimationPlaying = true;
+        TakeDamage(damage);
+        IsHit = true;
+    }
+
+    private IEnumerator TransitionToIdle()
+    {
+        yield return new WaitForSeconds(0.5f); // Adjust the delay as needed
+        animator.SetInteger("state", 0); // Transition back to idle state
+        IsHit = false;
     }
 
     public void TakeDamage(int damage)
