@@ -3,21 +3,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private AudioSource kickSoundEffect;
-    [SerializeField] private AudioSource punchSoundEffect;
-    [SerializeField] private AudioSource jumpKickSoundEffect;
-    [SerializeField] private AudioSource jumpSoundEffect;
+
     [SerializeField] private float distanceOffset = 1f;
     [SerializeField] private float heightOffset = 0.5f;
     [SerializeField] private GameObject avans;
-    private GameObject enemy;
-    private Animator animator;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private Animator animator;
+    [SerializeField] private AudioManager audioManager;
+
     public float walkSpeed = 1;
     private bool isGrounded = true;
     private bool isPlayingCrouch = false;
     private bool isPlayingWalk = false;
     private bool isPlayingPunch = false;
     private bool isPlayingHit = false;
+    private bool isPlayingKick = false;
+    private bool isPlayingJumpKick = false;
+    private bool isPlayingMove = false;
+    private bool isPlayingSpecial = false;
     private bool isCrouching = false;
 
     private const int STATE_IDLE = 0;
@@ -35,10 +38,10 @@ public class PlayerController : MonoBehaviour
     private bool previousHitState = false;
     private bool hasSpawnedAvans = false;
 
+    
+
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
         ChangeState(STATE_IDLE);
         ChangeDirection(enemy.transform.position.x - transform.position.x);
     }
@@ -63,12 +66,22 @@ public class PlayerController : MonoBehaviour
 
         previousHitState = currentHitState;
 
+
+        if(isPlayingPunch || isPlayingKick || isPlayingJumpKick || isPlayingSpecial)
+        {
+            isPlayingMove = true;
+        }
+        else
+        {
+            isPlayingMove = false;
+        }
+
         if (!isPlayingHit)
         {
             if (isCrouching && Input.GetKey("j"))
             {
                 ChangeState(STATE_CROUCH_PUNCH);
-                punchSoundEffect.Play();
+                audioManager.PlayPunchSound();
             }
             else if (Input.GetKey("k"))
             {
@@ -77,42 +90,38 @@ public class PlayerController : MonoBehaviour
                     isGrounded = false;
                     GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 190));
                     ChangeState(STATE_JUMP_KICK);
-                    jumpKickSoundEffect.Play();
+                    audioManager.PlayJumpKickSound();
                 }
-            }
-            else if (Input.GetKey("i") && !isPlayingPunch && !isPlayingCrouch && !isPlayingHit && comboCounter >= 3)
-            {
-                ChangeState(STATE_SPECIAL);
             }
             else if (Input.GetKey("j"))
             {
                 ChangeState(STATE_PUNCH);
-                punchSoundEffect.Play();
-                if (!punchSoundEffect.isPlaying)
-                {
-                    punchSoundEffect.Play();
-                }
+                audioManager.PlayPunchSound();
+            }
+            else if (Input.GetKey("i") && comboCounter >= 3)
+            {
+                ChangeState(STATE_SPECIAL);
             }
             else if (Input.GetKey("l"))
             {
                 ChangeState(STATE_KICK);
-                kickSoundEffect.Play();
+                audioManager.PlayKickSound();
             }
-            else if (Input.GetKey("w") && !isPlayingPunch && !isPlayingCrouch)
+            else if (Input.GetKey("w") && !isPlayingMove && !isPlayingCrouch)
             {
                 if (isGrounded)
                 {
                     isGrounded = false;
                     GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 250));
                     ChangeState(STATE_JUMP);
-                    jumpSoundEffect.Play();
+                    audioManager.PlayJumpSound();
                 }
             }
-            else if (isCrouching && !isPlayingWalk && !isPlayingPunch)
+            else if (isCrouching && !isPlayingWalk && !isPlayingMove)
             {
                 ChangeState(STATE_CROUCH);
             }
-            else if (Input.GetKey("d") && !isPlayingPunch)
+            else if (Input.GetKey("d") && !isPlayingMove)
             {
                 ChangeDirection(enemy.transform.position.x - transform.position.x);
                 if (enemy.transform.position.x - transform.position.x > 0)
@@ -126,7 +135,7 @@ public class PlayerController : MonoBehaviour
                 if (isGrounded)
                     ChangeState(STATE_WALK);
             }
-            else if (Input.GetKey("a") && !isPlayingPunch)
+            else if (Input.GetKey("a") && !isPlayingMove)
             {
                 ChangeDirection(enemy.transform.position.x - transform.position.x);
                 if (enemy.transform.position.x - transform.position.x > 0)
@@ -156,6 +165,9 @@ public class PlayerController : MonoBehaviour
         isPlayingPunch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Punch");
         isPlayingWalk = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk");
         isPlayingHit = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Hit");
+        isPlayingKick = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Kick");
+        isPlayingJumpKick = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-JumpKick");
+        isPlayingSpecial = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Special");
     }
 
     private void ChangeState(int state)

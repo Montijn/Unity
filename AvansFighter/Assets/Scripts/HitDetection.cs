@@ -6,14 +6,14 @@ public class HitDetection : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
     [SerializeField] private AudioSource hitSoundEffect;
-    private Animator animator;
+    [SerializeField] private Animator animator;
+
 
     private bool isHitAnimationPlaying = false;
     public bool IsHit { get; private set; }
     private void Start()
     {
         currentHealth = maxHealth;
-        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

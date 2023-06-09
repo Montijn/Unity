@@ -5,18 +5,20 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] private AudioSource kickSoundEffect;
     [SerializeField] private AudioSource punchSoundEffect;
+    [SerializeField] private Animator animator;
+    [SerializeField] public GameObject player;
 
     public float walkSpeed = 0.5f;
     public float walkDuration = 1;
     public float idleDuration = 2f;
-    private Animator animator;
+    
     private const int STATE_IDLE = 0;
     private const int STATE_WALK = 1;
     private const int STATE_PUNCH = 5;
     private const int STATE_KICK = 7;
 
     private int currentAnimationState = STATE_IDLE;
-    public GameObject player;
+   
     private bool isMoving = false; // Flag to determine if the enemy is currently moving
     private float moveTimer = 0f; // Timer for controlling movement
     private float idleTimer = 0f; // Timer for controlling idle duration
@@ -25,9 +27,7 @@ public class EnemyController : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        isAttacking = animator.GetCurrentAnimatorStateInfo(0).IsName("Ryu-Punch") || animator.GetCurrentAnimatorStateInfo(0).IsName("Ryu-Kick");
+        
         ChangeState(STATE_IDLE);
         
         ChangeDirection(player.transform.position.x - transform.position.x);
@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
+        isAttacking = animator.GetCurrentAnimatorStateInfo(0).IsName("Ryu-Punch") || animator.GetCurrentAnimatorStateInfo(0).IsName("Ryu-Kick");
         ChangeDirection(player.transform.position.x - transform.position.x);
 
         if (!isPlayingHit)

@@ -332,10 +332,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kickSoundEffect: {fileID: 502109335}
   punchSoundEffect: {fileID: 502109336}
+  animator: {fileID: 502109328}
+  player: {fileID: 1496852372}
   walkSpeed: 0.5
   walkDuration: 1
   idleDuration: 2
-  player: {fileID: 0}
 --- !u!95 &502109328
 Animator:
   serializedVersion: 5
@@ -370,6 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   hitSoundEffect: {fileID: 502109334}
+  animator: {fileID: 502109328}
 --- !u!61 &502109330
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1269,6 +1271,7 @@ GameObject:
   - component: {fileID: 1496852383}
   - component: {fileID: 1496852382}
   - component: {fileID: 1496852384}
+  - component: {fileID: 1496852385}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1290,6 +1293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   hitSoundEffect: {fileID: 1496852380}
+  animator: {fileID: 1496852375}
 --- !u!61 &1496852374
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1348,13 +1352,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2dffe09958e1846bd81ca32947bd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kickSoundEffect: {fileID: 1496852381}
-  punchSoundEffect: {fileID: 1496852382}
-  jumpKickSoundEffect: {fileID: 1496852384}
-  jumpSoundEffect: {fileID: 1496852383}
   distanceOffset: 1
   heightOffset: 0.15
   avans: {fileID: 2614405126074824846, guid: 93f50364ce9ad20488ca9ab741660f14, type: 3}
+  enemy: {fileID: 502109326}
+  animator: {fileID: 1496852375}
+  audioManager: {fileID: 1496852385}
   walkSpeed: 1
 --- !u!50 &1496852377
 Rigidbody2D:
@@ -1928,6 +1931,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1496852385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496852372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420be494759d5d04d932c55bffc029ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kickSoundEffect: {fileID: 1496852381}
+  punchSoundEffect: {fileID: 1496852382}
+  jumpKickSoundEffect: {fileID: 1496852384}
+  jumpSoundEffect: {fileID: 1496852383}
 --- !u!1 &1631714751
 GameObject:
   m_ObjectHideFlags: 0
