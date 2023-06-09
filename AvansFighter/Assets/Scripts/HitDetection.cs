@@ -4,9 +4,13 @@ public class HitDetection : MonoBehaviour
     public int maxHealth = 100;
     private int currentHealth;
 
+    public HealthBar healthBar;
+    public ScoreController scoreController;
+
     private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -35,6 +39,8 @@ public class HitDetection : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        scoreController.AddScore(damage);
         Debug.Log("Took " + damage + " damage. Current health: " + currentHealth);
 
         if (currentHealth <= 0)
@@ -47,5 +53,10 @@ public class HitDetection : MonoBehaviour
     {
         // Add your desired logic for enemy death
         Debug.Log("Died!");
+    }
+
+    public int getHealth()
+    {
+        return currentHealth;
     }
 }
