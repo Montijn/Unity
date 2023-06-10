@@ -50,18 +50,25 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         isCrouching = Input.GetKey("s");
+        isPlayingCrouch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Crouch");
+        isPlayingPunch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Punch");
+        isPlayingWalk = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk");
+        isPlayingHit = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Hit");
+        isPlayingKick = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Kick");
+        isPlayingJumpKick = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-JumpKick");
+        isPlayingSpecial = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Special");
+
         bool currentHitState = enemy.GetComponent<HitDetection>().IsHit;
 
         if (currentHitState && !previousHitState && !isPlayingHit)
         {
-            // Enemy has been hit (transition from false to true)
+            
             comboCounter++;
             Debug.Log("Combo Counter: " + comboCounter);
         }
 
         if (!currentHitState && isPlayingHit)
         {
-            // Player has been hit
             comboCounter = 0;
         }
 
@@ -166,13 +173,6 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        isPlayingCrouch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Crouch");
-        isPlayingPunch = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Punch");
-        isPlayingWalk = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Walk");
-        isPlayingHit = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Hit");
-        isPlayingKick = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Kick");
-        isPlayingJumpKick = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-JumpKick");
-        isPlayingSpecial = animator.GetCurrentAnimatorStateInfo(0).IsName("Ken-Special");
     }
 
     private void ChangeState(int state)

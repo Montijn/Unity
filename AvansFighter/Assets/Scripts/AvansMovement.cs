@@ -13,9 +13,9 @@ public class AvansMovement : MonoBehaviour
 
         if (enemy != null)
         {
-            // Calculate the initial direction from the "avans" object to the enemy
+
             Vector3 targetPosition = enemy.transform.position;
-            targetPosition.y = transform.position.y; // Keep the same y position as the "avans" object
+            targetPosition.y = transform.position.y; 
             directionToEnemy = targetPosition - transform.position;
             directionToEnemy.Normalize();
         }
@@ -25,9 +25,9 @@ public class AvansMovement : MonoBehaviour
     {
         if (enemy != null)
         {
-            // Move the "avans" object towards the enemy in the precalculated direction
+
             Vector3 newPosition = transform.position + directionToEnemy * moveSpeed * Time.deltaTime;
-            newPosition.y = transform.position.y; // Keep the same y position as the "avans" object
+            newPosition.y = transform.position.y;
             transform.position = newPosition;
         }
     }

@@ -67,8 +67,8 @@ public class HitDetection : MonoBehaviour
 
     private IEnumerator TransitionToIdle()
     {
-        yield return new WaitForSeconds(0.5f); // Adjust the delay as needed
-        animator.SetInteger("state", 0); // Transition back to idle state
+        yield return new WaitForSeconds(0.5f);
+        animator.SetInteger("state", 0); 
         IsHit = false;
     }
 
@@ -90,7 +90,6 @@ public class HitDetection : MonoBehaviour
 
     private void Die()
     {
-        // Add your desired logic for enemy death
         Debug.Log("Died!");
     }
 

@@ -18,10 +18,10 @@ public class EnemyController : MonoBehaviour
     private const int STATE_KICK = 7;
 
     private int currentAnimationState = STATE_IDLE;
-   
-    private bool isMoving = false; // Flag to determine if the enemy is currently moving
-    private float moveTimer = 0f; // Timer for controlling movement
-    private float idleTimer = 0f; // Timer for controlling idle duration
+
+    private bool isMoving = false;
+    private float moveTimer = 0f; 
+    private float idleTimer = 0f; 
     private bool isAttacking;
     private bool isPlayingHit = false;
 
@@ -32,7 +32,6 @@ public class EnemyController : MonoBehaviour
         
         ChangeDirection(player.transform.position.x - transform.position.x);
 
-        // Start with an initial idle duration
         idleTimer = Random.Range(1f, 4f);
     }
 
@@ -89,19 +88,16 @@ public class EnemyController : MonoBehaviour
     {
         if (direction > 0)
         {
-            // Player is to the right of the enemy
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
-            // Player is to the left of the enemy
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
     private void PerformRandomAttack()
     {
-        // Generate a random number to determine the attack action
         int randomAction = Random.Range(0, 2);
 
         switch (randomAction)
@@ -125,8 +121,8 @@ public class EnemyController : MonoBehaviour
     }
     private IEnumerator TransitionToIdle()
     {
-        yield return new WaitForSeconds(0.3f); // Adjust the delay as needed
-        animator.SetInteger("state", 0); // Transition back to idle state
+        yield return new WaitForSeconds(0.3f); 
+        animator.SetInteger("state", 0); 
     }
 
 

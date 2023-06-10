@@ -62,14 +62,20 @@ public class RoundController : MonoBehaviour
 
     private void selectWinner(string character)
     {
-        if(character == "Ken")
+        if (character == "Ken")
         {
             score.SubmitScore();
-            SceneManager.LoadScene("Ken_Ending");
-        } 
+            StartCoroutine(WaitAndLoadScene("Ken_Ending", 1.5f));
+        }
         else
         {
-            SceneManager.LoadScene("GameOver");
+            StartCoroutine(WaitAndLoadScene("GameOver", 1.5f));
         }
+    }
+
+    private IEnumerator WaitAndLoadScene(string sceneName, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene(sceneName);
     }
 }
